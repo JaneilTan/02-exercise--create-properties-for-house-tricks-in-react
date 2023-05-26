@@ -7,13 +7,13 @@ const AddProperty = () => {
   const [askingPrice, setAskingPrice] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [img, setImgUrl] = useState('');
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newProperty = { title, askingPrice, description, address, imgUrl };
+    const newProperty = { title, askingPrice, description, address, img };
 
     setIsPending(true);
 
@@ -23,7 +23,7 @@ const AddProperty = () => {
       body: JSON.stringify(newProperty)
     }).then(() => {
       setIsPending(false);
-      
+      navigate('/');
     })
 
     
@@ -33,47 +33,47 @@ const AddProperty = () => {
     <>
       <h1>Add a new property</h1>
       <form onSubmit={handleSubmit}>
-      <label htmlFor="Title">Title:</label>
+      <label htmlFor="title">Title:</label>
       <input
         type="text"
-        id="Title"
+        id="title"
         required
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-      <label htmlFor="Price">Asking Price:</label>
+      <label htmlFor="askingPrice">Asking Price:</label>
       <input
         type="text"
-        id="Price"
+        id="askingPrice"
         required
         value={askingPrice}
         onChange={(event) => setAskingPrice(event.target.value)}
       />
-      <label htmlFor="Description">Description:</label>
+      <label htmlFor="description">Description:</label>
       <input
         type="text"
-        id="Description"
+        id="description"
         required
         value={description}
         onChange={(event) => setDescription(event.target.value)}
       />
-      <label htmlFor="Address">Address:</label>
+      <label htmlFor="address">Address:</label>
       <input
         type="text"
-        id="Address"
+        id="address"
         required
         value={address}
         onChange={(event) => setAddress(event.target.value)}
       />
-      <label htmlFor="ImgUrl">Image URL:</label>
+      <label htmlFor="img">Image URL:</label>
       <input
-        type="text"
-        id="ImgUrl"
+        type="file"
+        id="img"
         required
-        value={imgUrl}
+        value={img}
         onChange={(event) => setImgUrl(event.target.value)}
       />
-      { !isPending && <button onClick={() => navigate('/')}>Submit</button> }
+      { !isPending && <button>Submit</button> }
       { isPending && <button disabled>Submitting property...</button> }
       </form>
     </>
