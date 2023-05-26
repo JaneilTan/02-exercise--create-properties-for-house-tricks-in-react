@@ -67,7 +67,7 @@ const AddProperty = () => {
       />
       <label htmlFor="img">Image URL:</label>
       <input
-        type="file"
+        type="text"
         id="img"
         required
         value={img}
